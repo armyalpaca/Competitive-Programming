@@ -46,6 +46,10 @@ class SegmentTreeSum
         }
     }
     public:
+
+    SegmentTreeSum(){
+        
+    }
     SegmentTreeSum(int n){
         h = sizeof(int) * 8 - __builtin_clz(n);
         this->n=n;
