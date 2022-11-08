@@ -1,5 +1,5 @@
 #include <bits/stdc++.h>
-#define K 300005
+#define K 250005
 using namespace std;
 int main(){
     int n;
