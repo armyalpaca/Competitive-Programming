@@ -5,7 +5,8 @@ using namespace std;
 class HLD{
     int n;
     vector<vector<int> >adj;
-    vector<int>val,heavy,depth,head,pos,parent;
+    vector<long long>val;
+    vector<int>heavy,depth,head,pos,parent;
     SegmentTreeSum st;
     int cur_pos=0;
     int dfs(int nodo) {
@@ -41,9 +42,10 @@ class HLD{
         heavy = vector<int>(n, -1);
         head = vector<int>(n);
         pos = vector<int>(n);
-        st=SegmentTreeSum(n);
+        st=SegmentTreeSum(val);
         dfs(0);
         decompose(0,0);
+        
         for(int i=0;i<n;i++){
             st.modify(pos[i],pos[i],val[i]);
         }

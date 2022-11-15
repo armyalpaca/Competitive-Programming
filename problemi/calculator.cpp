@@ -10,7 +10,7 @@ int main(){
     set<int>fatto;
     fatto.insert(1);
     vector<vector<int> >ar(100);
-    
+    vector<int>ccc(100001,0);
     ar[0].push_back(1);
     int conta=1;
     for(int costo=1;costo<100;costo++){
@@ -18,7 +18,9 @@ int main(){
             int j=costo-1-i;
             
             for(int a:ar[i]){
+                ccc[a]=i;
                 for(int b:ar[j]){
+                    ccc[b]=j;
                     if(a==0||b==0)continue;
                     vector<int>supp={a+b,a-b,a/b,a%b,a&b,a^b,a|b,a>>b};
                     if(a*b<100000)supp.push_back(a*b);
@@ -57,7 +59,9 @@ int main(){
     }
     int m;
     cin>>m;
-    cout<<f(m)<<"\n";
-
+    ofstream cout("output.txt");
+    for(int i=1;i<=3000;i++){
+        cout<<i<<" "<<ccc[i]<<": "<<f(i)<<"\n";
+    }
     
 }
