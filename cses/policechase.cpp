@@ -1,7 +1,5 @@
 #include <bits/stdc++.h>
 using namespace std;
-#pragma once
-
 struct FlowEdge {
     int v, u;
     long long cap, flow = 0;
@@ -26,7 +24,7 @@ class Dinic {
 
     void add_edge(int v, int u, long long cap) {
         edges.emplace_back(v, u, cap);
-        edges.emplace_back(u, v, 0);
+        edges.emplace_back(u, v, cap);
         adj[v].push_back(m);
         adj[u].push_back(m + 1);
         m += 2;
@@ -84,3 +82,41 @@ class Dinic {
         return f;
     }
 };
+int main(){
+    int n,m;
+    cin>>n>>m;
+    Dinic d=Dinic(n+1,1,n);
+    for(int i=0;i<m;i++){
+        int a,b;
+        cin>>a>>b;
+        d.add_edge(a,b,1);
+    }
+    cout<<d.flow()<<"\n";
+
+    vector<bool>vis(n+1,false);
+    vis[1]=true;
+    queue<int>coda;
+    coda.push(1);
+    while (!coda.empty()){
+        int nodo=coda.front();
+
+        coda.pop();
+        for (int id : d.adj[nodo]) {
+            if (d.edges[id].flow <=0&&!vis[d.edges[id].u]){
+                coda.push(d.edges[id].u);
+                vis[d.edges[id].u]=true;
+            }
+        }
+    }
+
+    for(int i=1;i<=n;i++){
+        if(!vis[i])continue;
+        for(int x:d.adj[i]){
+            if(!vis[d.edges[x].u]){
+                cout<<i<<" "<<d.edges[x].u<<"\n";
+            }
+        }
+    }
+    
+
+}
