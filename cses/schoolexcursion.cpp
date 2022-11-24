@@ -39,8 +39,6 @@ int main(){
         ok.push_back(x);
     }
     vector<vector<int> >dp(2,vector<int>(n+1,-1));
- 
-    cout<<"\n";
     dp[1][0]=0;
     for(int i=0;i<ok.size();i++){
         for(int j=0;j<=n;j++){
