@@ -67,6 +67,5 @@ int main(){
         supp.push_back(0);
         reverse(supp.begin(),supp.end());
         for(int x:supp)cout<<x<<"\n";
-
     }
 }
