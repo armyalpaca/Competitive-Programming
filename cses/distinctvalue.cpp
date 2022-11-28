@@ -38,7 +38,6 @@ int countg(int l,int r,int pos,node *a){
     if(r<pos)return 0;
     int mid=(l+r)/2;
     return countg(l,mid,pos,a->l)+countg(mid+1,r,pos,a->r);
-
 }
 
 
@@ -69,8 +68,4 @@ int main(){
         cin>>a>>b;
         cout<<countg(0,1e9,b+1,Versioni[b])-countg(0,1e9,b+1,Versioni[a-1])<<"\n";
     }
-
-    
-
-
 }

@@ -1,71 +1,60 @@
 #include <bits/stdc++.h>
 using namespace std;
-#define mod 1000000007
-#define MAXN 4002
-struct task{
-    int id;
-    int sz;
-    int datasz;
-    vector<int>aff_machine;
-};
-struct machine{
-    int id;
-    int power;
-};
-struct disk{
-    int id;
-    int speed;
-    int capacity;
-};
-int ntask;
-int nmachine;
-int ndisk;
-vector<vector<int> >data_adj(MAXN),data_inv_adj(MAXN),task_adj(MAXN),task_inv_adj(MAXN);
+#define MAXN 505
 
-vector<task>Tasks;
-vector<disk>Disks;
-vector<machine>Machines;
-int main(){
-    cin>>ntask;
-    for(int i=0;i<ntask;i++){
-        task tmp;
-        cin>>tmp.id>>tmp.sz>>tmp.datasz;
-        int k;
-        cin>>k;
-        for(int j=0;j<k;j++){
-            int supp;
-            cin>>supp;
-            tmp.aff_machine.push_back(supp);
+char mat[502][502];
+vector<set<int> >adj(MAXN);
+int G=1;
+vector<int>r1(MAXN),r2(MAXN);
+vector<bool>vis(MAXN;
+void dfs(int nodo,int gruppo,int accesso){
+    vis[nodo]=1;
+    r1[nodo]=gruppo;
+    r2[nodo]=accesso;
+    bool primo=true;
+    for(int x:adj[nodo]){
+        if(primo){
+            dfs(x,gruppo,accesso+1);
+            primo=false;
+        }else{
+            dfs(x,++G,1);
         }
-        Tasks.push_back(tmp);
     }
-
-    cin>>nmachine;
-    for(int i=0;i<nmachine;i++){
-        machine tmp;
-        cin>>tmp.id>>tmp.power;
-        Machines.push_back(tmp);
+}
+int main(){
+    int n,m;
+    cin>>n>>m;
+    for(int i=0;i<n;i++){
+        for(int j=0;j<m;j++){
+            cin>>mat[i][j];
+        }
     }
-    cin>>ndisk;
-    for(int i=0;i<ndisk;i++){
-        disk tmp;
-        cin>>tmp.id>>tmp.speed>>tmp.capacity;
-        Disks.push_back(tmp);
-    }
-    int m;
-    cin>>m;
+    map<string,int>mappa;
+    int cc=1;
+    vector<int>C(m);
     for(int i=0;i<m;i++){
-        int a,b;
-        cin>>a>>b;
-        data_adj[a].push_back(b);
-        data_inv_adj[b].push_back(a);
+        string tmp="";
+        for(int j=0;j<n;j++){
+            tmp+=mat[j][i];
+        }
+        if(mappa[tmp]==0){
+            mappa[tmp]=cc++;
+        }
+        C[i]=mappa[tmp];
     }
-    cin>>m;
     for(int i=0;i<m;i++){
-        int a,b;
-        cin>>a>>b;
-        task_adj[a].push_back(b);
-        task_inv_adj[b].push_back(a);
+        for(int j=0;j<m;j++){
+            if(C[i]==C[j])continue;
+            bool ok=true;
+            for(int k=0;k<n;k++){
+                if(mat[k][i]=='0'&&mat[k][j]=='1'){
+                    ok=false;
+                    break;
+                }
+            }
+            if(ok){
+                adj[C[i]].insert(C[j]);
+            }
+        }
     }
-
 }

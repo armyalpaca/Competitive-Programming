@@ -9,6 +9,7 @@
         "bitset": "cpp",
         "ostream": "cpp",
         "string": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "*.tcc": "cpp"
     }
 }

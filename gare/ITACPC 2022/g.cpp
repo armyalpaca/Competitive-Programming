@@ -17,6 +17,7 @@ void update(ll l,ll r,ll pos,ll v,nodo *a){
         a->v=v;
         return;
     }
+    //cout<<l<<" "<<r<<endl;
     ll mid=(l+r)/2;
     if(a->l==NULL)a->l=new nodo;
     if(a->r==NULL)a->r=new nodo;
@@ -30,6 +31,7 @@ ll getmin(ll l,ll r,ll ql,ll qr,nodo *a){
     if(l>=ql&&r<=qr)return a->v;
     if(ql>r||qr<l)return 0;
     ll mid=(l+r)/2;
+    //cout<<l<<" "<<r<<endl;
     return max(getmin(l,mid,ql,qr,a->l),getmin(mid+1,r,ql,qr,a->r));
 }
 int main(){

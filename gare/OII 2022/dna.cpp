@@ -81,15 +81,6 @@ string analizza(int N){
     while(ask(b+"0")){
         b+="0";
     }
-    /*while(low<high){
-        int mid=(low+high+1)/2;
-        if(ask(b+string(mid,'0'))){
-            low=mid;
-        }else{
-            high=mid-1;
-        }
-    }
-    b=b+string(low,'0');*/
     while (b.size()<N)
     {
         if(ask("0"+b)){
