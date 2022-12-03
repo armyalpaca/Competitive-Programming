@@ -14,7 +14,6 @@ int main(){
         else if(b=="Y")t2=t1,score+=3;
         else t2=(t1+1)%3,score+=6;
         score+=t2+1;
-        //cout<<a<<" "<<b<<" "<<score<<" "<<t1<<" "<<t2<<"\n";
     }
     cout<<score<<"\n";
 }
