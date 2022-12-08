@@ -51,6 +51,5 @@ int main(){
     spazio=70000000-spazio;
     spazio=30000000-spazio;
     dfs("/");
-
     cout<<ris<<"\n";
 }
